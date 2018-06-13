@@ -38,18 +38,20 @@ pipeline {
         }
       }
 
-    stage('Disponibilizando artefato para Download') {
+    stage('Disponibilizando artefato para Download dentro do Job') {
         steps {
           sh 'echo -e "\033[0;34m## Archiving artifacts  ##\033[0m"'
-          archiveArtifacts artifacts: 'f**/target/*.war', fingerprint: true
+          archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
           }
         }
 
-    stage('Disponibilizando report Junit') {
+    stage('Disponibilizando report Junit dentro do Job') {
         steps {
           sh 'echo -e "\033[0;34m## Junit report ##\033[0m"'
-          junit allowEmptyResults: true, testDataPublishers: [[$class: 'AttachmentPublisher']], testResults: '**/target/surefire-reports/*.xml'
+            junit '**/target/surefire-reports/*.xml'
+
+            }
           }
         }
       }
-    }
+
