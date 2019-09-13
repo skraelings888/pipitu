@@ -9,9 +9,9 @@ pipeline {
       }
     }
 
-    stage('git clone fiscal-xml-consult') {
+    stage('git clone') {
       steps{
-          sh 'echo -e "\033[0;34m## Clonando repositório fiscal-xml-consult ##\033[0m"'
+          sh 'echo -e "\033[0;34m## Clonando repositório ##\033[0m"'
           checkout([
             $class: 'GitSCM',
             extensions: [
